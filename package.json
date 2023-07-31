@@ -32,6 +32,7 @@
     "build-ts": "tsc && tsc-alias",
     "build": "npm run build-ts",
     "test": "jest",
+    "test:coverage": "jest --coverage",
     "dev": "nodemon -r dotenv/config src/index.ts",
     "start": "node -r esm -r dotenv/config dist/index.js"
   },
