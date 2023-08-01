@@ -5,8 +5,8 @@ import { PORT } from './config/config';
 import route from './route';
 import '@libs/auth/strategies/JwtStrategy';
 import passport from 'passport';
-import { pagination } from 'typeorm-pagination';
 import db from '@db/db';
+import cors from 'cors';
 
 interface RequestError extends Error {
   status?: number;
@@ -20,7 +20,7 @@ db.initialize().then(() => {
 
 const app = express();
 
-app.use(pagination);
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
