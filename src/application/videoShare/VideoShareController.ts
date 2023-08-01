@@ -48,6 +48,6 @@ export async function all(req: Request, res: Response) {
   const videoShares = await VideoShareRepo.all(page, perPage);
   return res.json({
     success: true,
-    data: videoShares.map(v => v.toJSON(req.user as User))
+    data: videoShares.map(v => v.toJSON(req.user))
   });
 }

@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, Index, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import User from './User';
 import VideoShare from './VideoShare';
 
@@ -8,6 +8,7 @@ export enum VoteType {
 }
 
 @Entity()
+@Index(['user', 'videoShare'], { unique: true })
 export default class Vote {
   @PrimaryGeneratedColumn('uuid')
     id: string;

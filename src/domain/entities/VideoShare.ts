@@ -28,7 +28,7 @@ export default class VideoShare {
   @OneToMany(() => Vote, (vote) => vote.videoShare)
     votes: Vote[];
 
-  toJSON(user: User) {
+  toJSON(user: {email: string}) {
     const upvote = this.votes.filter(v => v.type === VoteType.UP).length;
     const downvote = this.votes.filter(v => v.type === VoteType.DOWN).length;
     const ownVote = this.votes.find(v => v.user.email === user.email);
