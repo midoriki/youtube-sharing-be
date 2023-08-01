@@ -1,5 +1,7 @@
 import bcrypt from 'bcrypt';
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, BeforeInsert } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, BeforeInsert, OneToMany } from 'typeorm';
+import Vote from './Vote';
+import VideoShare from './VideoShare';
 
 @Entity()
 export default class User {
@@ -14,6 +16,13 @@ export default class User {
 
   @CreateDateColumn()
     createdAt: Date;
+
+  @OneToMany(() => Vote, (vote) => vote.user)
+    votes: Vote[];
+
+  @OneToMany(() => VideoShare, (videoShare) => videoShare.user)
+    videoShares: VideoShare[];
+
 
   @BeforeInsert()
   async hashPassword() {

@@ -1,7 +1,7 @@
-import User from '@domain/entities/User';
 import { DB, PROD } from 'config';
 import { DataSource } from 'typeorm';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
+import entities from '@domain/entities';
 
 const db = new DataSource({
   type: 'postgres',
@@ -13,7 +13,7 @@ const db = new DataSource({
   synchronize: true,
   logging: !PROD,
   namingStrategy: new SnakeNamingStrategy(),
-  entities: [User]
+  entities
 });
 
 export default db;
