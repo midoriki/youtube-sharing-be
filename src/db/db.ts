@@ -1,4 +1,4 @@
-import { DB, PROD } from 'config';
+import { DB, PROD } from '@config/config';
 import { DataSource } from 'typeorm';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 import entities from '@domain/entities';

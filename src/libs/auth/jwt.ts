@@ -1,4 +1,4 @@
-import { JWT_EXPIRE_TIME, JWT_SECRET } from '@/config';
+import { JWT_EXPIRE_TIME, JWT_SECRET } from '@config/config';
 import jwt from 'jsonwebtoken';
 
 export function sign(user: { email: string }) {

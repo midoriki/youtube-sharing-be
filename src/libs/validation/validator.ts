@@ -2,7 +2,17 @@ import { NextFunction, Request, Response } from 'express';
 import Schemas from './schemas';
 import Joi from 'joi';
 
-export default function validator(schema: string | Joi.ObjectSchema) {
+type ValidatorParam = string | Joi.ObjectSchema;
+
+export function bodyValidator(schema: ValidatorParam) {
+  return validator(schema, 'body');
+}
+
+export function queryValidator(schema: ValidatorParam) {
+  return validator(schema, 'query');
+}
+
+function validator(schema: ValidatorParam, part: 'body' | 'query') {
   const isString = typeof schema === 'string';
   if(isString && !Schemas.hasOwnProperty(schema)) {
     throw new Error(`'${schema}' schema does not exists.`);
@@ -12,7 +22,7 @@ export default function validator(schema: string | Joi.ObjectSchema) {
     try {
       const validated = await (
         isString ? Schemas[schema] : schema
-      ).validateAsync(req.body, { abortEarly: false });
+      ).validateAsync(req[part], { abortEarly: false });
       
       req.body = validated;
       next();

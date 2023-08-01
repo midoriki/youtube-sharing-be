@@ -25,13 +25,13 @@
     "outDir": "./dist",
     "baseUrl": "./src",
     "paths": {
-      "@/*": ["*"],
       "@application/*": ["application/*"],
       "@domain/*": ["domain/*"],
       "@infrastructure/*": ["infrastructure/*"],
       "@interfaces/*": ["interfaces/*"],
       "@libs/*": ["libs/*"],
-      "@db/*": ["db/*"]
+      "@db/*": ["db/*"],
+      "@config/*": ["config/*"]
     }
   },
   "include": ["src/**/*", "src/index.d.ts"],

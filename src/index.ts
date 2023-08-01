@@ -1,10 +1,11 @@
 import 'reflect-metadata';
 import express, { Request, Response, NextFunction } from 'express';
 import httpServer from 'http';
-import { PORT } from './config';
+import { PORT } from './config/config';
 import route from './route';
 import '@libs/auth/strategies/JwtStrategy';
 import passport from 'passport';
+import { pagination } from 'typeorm-pagination';
 import db from '@db/db';
 
 interface RequestError extends Error {
@@ -19,6 +20,7 @@ db.initialize().then(() => {
 
 const app = express();
 
+app.use(pagination);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

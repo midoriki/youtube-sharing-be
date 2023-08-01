@@ -12,3 +12,5 @@ export const DB = {
 
 export const JWT_SECRET = process.env.JWT_SECRET || 'secret';
 export const JWT_EXPIRE_TIME = process.env.JWT_EXPIRE_TIME || '1800';
+
+export const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;

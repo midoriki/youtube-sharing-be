@@ -1,5 +1,5 @@
 import UserRepo from '@infrastructure/repo/UserRepo';
-import { JWT_SECRET } from '@/config';
+import { JWT_SECRET } from '@config/config';
 import passport from 'passport';
 import { ExtractJwt, Strategy, StrategyOptions } from 'passport-jwt';
 

@@ -1,10 +1,10 @@
 import express from 'express';
 import { login, register } from './AuthController';
-import validator from '@/libs/validation/validator';
+import { bodyValidator } from '@libs/validation/validator';
 
 const route = express.Router();
 
-route.post('/login', validator('login'), login);
-route.post('/register', validator('register'), register);
+route.post('/login', bodyValidator('login'), login);
+route.post('/register', bodyValidator('register'), register);
 
 export default route;
