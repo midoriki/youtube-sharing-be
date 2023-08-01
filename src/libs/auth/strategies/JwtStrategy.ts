@@ -1,4 +1,5 @@
-import { JWT_SECRET } from 'config';
+import UserRepo from '@infrastructure/repo/UserRepo';
+import { JWT_SECRET } from '@/config';
 import passport from 'passport';
 import { ExtractJwt, Strategy, StrategyOptions } from 'passport-jwt';
 
@@ -8,8 +9,12 @@ const opts: StrategyOptions = {
 };
 
 passport.use(
-  new Strategy(opts, function (payload, done) {
-    done(null, payload);
+  new Strategy(opts, async function (payload, done) {
+    const user = await UserRepo.findByEmail(payload.email);
+    if (user) {
+      return done(null, user);
+    }
+    return done(new Error('Invalid JWT data.'), false);
   })
 );
 

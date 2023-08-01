@@ -20,15 +20,18 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "emitDecoratorMetadata": true,
+    "strictPropertyInitialization": false,
     "outDir": "./dist",
     "baseUrl": "./src",
     "paths": {
-      "@/*": ["/*"],
+      "@/*": ["*"],
       "@application/*": ["application/*"],
       "@domain/*": ["domain/*"],
       "@infrastructure/*": ["infrastructure/*"],
       "@interfaces/*": ["interfaces/*"],
-      "@libs/*": ["libs/*"]
+      "@libs/*": ["libs/*"],
+      "@db/*": ["db/*"]
     }
   },
   "include": ["src/**/*", "src/index.d.ts"],

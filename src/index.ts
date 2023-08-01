@@ -1,13 +1,20 @@
 import express, { Request, Response, NextFunction } from 'express';
-import passport from 'passport';
 import httpServer from 'http';
 import { PORT } from './config';
 import route from './route';
 import '@libs/auth/strategies/JwtStrategy';
+import passport from 'passport';
+import db from '@db/db';
 
 interface RequestError extends Error {
   status?: number;
 }
+
+db.initialize().then(() => {
+  console.log('[TypeORM] initialized.');
+}).catch((error) => {
+  console.log('[TypeORM] failed to initialized.', error);
+});
 
 const app = express();
 

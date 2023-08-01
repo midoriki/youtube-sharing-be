@@ -1,5 +1,5 @@
-import express from 'express';
 import { authenticated } from '@libs/auth/strategies/JwtStrategy';
+import express from 'express';
 
 const route = express.Router();
 
