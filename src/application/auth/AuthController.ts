@@ -7,7 +7,7 @@ export async function login(req: Request, res: Response) {
   const { email, password } = req.body;
 
   const user = await UserRepo.findByEmail(email);
-  const validate = user?.validatePassword(password);
+  const validate = await user?.validatePassword(password);
 
   if (!user || !validate) {
     return res.status(400).json({
@@ -18,7 +18,7 @@ export async function login(req: Request, res: Response) {
 
   const token = sign({ email: user.email });
 
-  res.json({ success: true, token });
+  return res.json({ success: true, token });
 }
 
 export async function register(req: Request, res: Response) {
@@ -41,5 +41,5 @@ export async function register(req: Request, res: Response) {
 
   const token = sign({ email: user.email });
 
-  res.json({ success: true, token });
+  return res.json({ success: true, token });
 }

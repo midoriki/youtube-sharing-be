@@ -3,12 +3,12 @@ import db from '@db/db';
 
 const Repo = db.getRepository(User);
 
-async function findByEmail(email: string): Promise<User | null> {
-  return await Repo.findOneBy({ email });
+function findByEmail(email: string): Promise<User | null> {
+  return Repo.findOneBy({ email });
 }
 
-async function save(user: User): Promise<User> {
-  return await Repo.save(user);
+function save(user: User): Promise<User> {
+  return Repo.save(user);
 }
 
 export default {

@@ -1,9 +1,9 @@
 import { authenticated } from '@libs/auth/strategies/JwtStrategy';
-import express from 'express';
+import express, { Request, Response } from 'express';
 
 const route = express.Router();
 
-route.get('/', authenticated, (req, res) => {
+route.get('/', authenticated, (req: Request, res: Response) => {
   res.json({ success: true, user: req.user });
 });
 

@@ -12,7 +12,7 @@ passport.use(
   new Strategy(opts, async function (payload, done) {
     const user = await UserRepo.findByEmail(payload.email);
     if (user) {
-      return done(null, user);
+      return done(null, { id: user.id, email: user.email });
     }
     return done(new Error('Invalid JWT data.'), false);
   })
