@@ -4,6 +4,8 @@ services:
   app:
     env_file: .env
     build: .
+    volumes:
+      - ./:/home/app
     depends_on:
       - db
     ports:
