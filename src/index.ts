@@ -1,8 +1,9 @@
 import express, { Request, Response, NextFunction } from 'express';
+import passport from 'passport';
 import httpServer from 'http';
-
 import { PORT } from './config';
 import route from './route';
+import '@libs/auth/strategies/JwtStrategy';
 
 interface RequestError extends Error {
   status?: number;
@@ -16,6 +17,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use((err: RequestError, req: Request, res: Response, next: NextFunction) => {
   res.status(500).send({ success: false, msg: err.toString() });
 });
+
+app.use(passport.initialize());
 
 app.use('/', route);
 

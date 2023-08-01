@@ -27,7 +27,8 @@
       "@application/*": ["application/*"],
       "@domain/*": ["domain/*"],
       "@infrastructure/*": ["infrastructure/*"],
-      "@interfaces/*": ["interfaces/*"]
+      "@interfaces/*": ["interfaces/*"],
+      "@libs/*": ["libs/*"]
     }
   },
   "include": ["src/**/*", "src/index.d.ts"],
