@@ -31,7 +31,7 @@ export default class VideoShare {
   toJSON(user: {email: string}) {
     const upvote = this.votes.filter(v => v.type === VoteType.UP).length;
     const downvote = this.votes.filter(v => v.type === VoteType.DOWN).length;
-    const ownVote = this.votes.find(v => v.user.email === user.email);
+    const ownVote = this.votes.find(v => v.user?.email === user?.email);
     return {
       id: this.id,
       videoId: this.videoId,

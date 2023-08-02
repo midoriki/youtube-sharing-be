@@ -9,7 +9,7 @@ const route = express.Router();
 
 route.use('/api/auth', AuthRoute);
 route.use('/api/profile', authenticated, ProfileRoute);
-route.use('/api/videoShare', authenticated, VideoShareRoute);
+route.use('/api/videoShare', VideoShareRoute);
 route.use('/api/vote', authenticated, VoteRoute);
 
 export default route;
