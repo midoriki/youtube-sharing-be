@@ -3,7 +3,8 @@ version: '3'
 services:
   app:
     env_file: .env
-    build: .
+    build:
+      dockerfile: Dockerfile
     volumes:
       - ./:/home/app
     depends_on:
@@ -20,6 +21,18 @@ services:
       - '5432:5432'
     volumes:
       - db:/var/lib/postgresql/data
+
+  nginx:
+    container_name: nginx
+    build:
+      dockerfile: Dockerfile.nginx
+    tty: true
+    depends_on:
+      - app
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
 
 volumes:
   db:

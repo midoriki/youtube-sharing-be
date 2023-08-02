@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+import hash from 'password-hash';
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, BeforeInsert, OneToMany } from 'typeorm';
 import Vote from './Vote';
 import VideoShare from './VideoShare';
@@ -26,10 +26,10 @@ export default class User {
 
   @BeforeInsert()
   async hashPassword() {
-    this.password = await bcrypt.hash(this.password, 10);
+    this.password = await hash.generate(this.password);
   }
 
   async validatePassword(password: string) {
-    return await bcrypt.compare(password, this.password);
+    return await hash.verify(password, this.password);
   };
 }

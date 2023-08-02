@@ -1,0 +1,8 @@
+FROM node:18.17-alpine AS builder
+WORKDIR /app
+COPY frontend .
+RUN npm install && npm run build
+
+FROM nginx:alpine
+COPY --from=builder /app/build /opt/app
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
