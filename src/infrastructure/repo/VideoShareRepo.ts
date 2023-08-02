@@ -17,6 +17,7 @@ function all(page: number = 1, perPage = 10): Promise<[VideoShare[], number]> {
     .leftJoinAndSelect('videoShare.user', 'user')
     .leftJoinAndSelect('videoShare.votes', 'vote')
     .leftJoinAndSelect('vote.user', 'voteUser')
+    .orderBy('videoShare.createdAt', 'DESC')
     .skip(skip)
     .take(perPage)
     .getManyAndCount();
