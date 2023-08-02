@@ -45,9 +45,11 @@ export async function all(req: Request, res: Response) {
   const page = parseInt(req.query.page as string || '1');
   const perPage = parseInt(req.query.perPage as string || '10');
 
-  const videoShares = await VideoShareRepo.all(page, perPage);
+  const [videoShares, totalRecord] = await VideoShareRepo.all(page, perPage);
+  const totalPage = Math.ceil(totalRecord / perPage);
   return res.json({
     success: true,
-    data: videoShares.map(v => v.toJSON(req.user))
+    data: videoShares.map(v => v.toJSON(req.user)),
+    totalPage
   });
 }
