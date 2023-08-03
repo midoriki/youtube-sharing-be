@@ -7,9 +7,9 @@ import VoteRoute from '@application/vote/VoteRoute';
 
 const route = express.Router();
 
-route.use('/api/auth', AuthRoute);
-route.use('/api/profile', authenticated, ProfileRoute);
-route.use('/api/videoShare', VideoShareRoute);
-route.use('/api/vote', authenticated, VoteRoute);
+route.use('/auth', AuthRoute);
+route.use('/profile', authenticated, ProfileRoute);
+route.use('/videoShare', VideoShareRoute);
+route.use('/vote', authenticated, VoteRoute);
 
 export default route;

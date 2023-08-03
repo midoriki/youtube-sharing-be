@@ -5,6 +5,7 @@ import { findVideoById } from '@libs/youtube/api';
 import { extractVideoIdFromURL } from '@libs/youtube/extractor';
 import { Request, Response } from 'express';
 
+
 export async function create(req: Request, res: Response) {
   const { url } = req.body;
 
@@ -34,6 +35,11 @@ export async function create(req: Request, res: Response) {
   videoShare.user = req.user as User;
 
   await VideoShareRepo.save(videoShare);
+
+  req.app.get('socket.io').emit('new-video-share', {
+    author: req.user.email,
+    title: video.title
+  });
 
   return res.json({
     success: true,

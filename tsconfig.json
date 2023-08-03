@@ -1,9 +1,6 @@
 {
   "ts-node": {
     "require": ["tsconfig-paths/register"],
-    "compilerOptions": {
-      "module": "CommonJS"
-    }
   },
   "compilerOptions": {
     "target": "ES2021",

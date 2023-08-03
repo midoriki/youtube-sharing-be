@@ -1,12 +1,13 @@
 import 'reflect-metadata';
 import express, { Request, Response, NextFunction } from 'express';
-import httpServer from 'http';
+import { createServer } from 'http';
 import { PORT } from './config/config';
-import route from './route';
+import apiRoute from './route';
 import '@libs/auth/strategies/JwtStrategy';
 import passport from 'passport';
 import db from '@db/db';
 import cors from 'cors';
+import { Server } from 'socket.io';
 
 interface RequestError extends Error {
   status?: number;
@@ -30,9 +31,25 @@ app.use((err: RequestError, req: Request, res: Response, next: NextFunction) => 
 
 app.use(passport.initialize());
 
-app.use('/', route);
+app.use('/api', apiRoute);
 
-const http = new httpServer.Server(app);
+const http = createServer(app);
+
+const io = new Server(http, {
+  cors: {
+    origin: '*'
+  }
+});
+
+io.on('connection', (socket) => {
+  console.log('new client connected', socket.id);
+
+  socket.on('disconnect', () => {
+    console.log('client disconnected', socket.id);
+  });
+});
+
+app.set('socket.io', io);
 
 http.listen(PORT, () => {
   console.log(`Server started at port ${PORT}`);
