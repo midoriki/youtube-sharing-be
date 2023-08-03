@@ -1,11 +1,10 @@
-FROM node:18.17
+FROM node:16.20-alpine
 
 EXPOSE 4000
 
-RUN apt-get update
-ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US:en
-ENV LC_ALL en_US.UTF-8
+ENV NODE_PATH=/usr/local/lib/node_modules
+
+RUN npm i -g esm dotenv
 
 WORKDIR /home/app
 
@@ -13,7 +12,7 @@ COPY package.json /home/app/
 
 RUN npm i
 
-COPY . /home/app
+COPY . .
 
 RUN npm run build
 
