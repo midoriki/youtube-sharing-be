@@ -88,6 +88,44 @@ Run dev script
 
 By default project will be run at port [4000](http://localhost:4000).
 
+## General flow
+
+The idea of the app is allow users to share video from Youtube by submitting a URL.
+
+Unauthenticated user can view videos list, register and login.
+
+Authenticated user can view videos list, submit a new video, like/dislike, and receive notification when new video was shared.
+
+### Authentication
+
+The app use email/password authentication and user's data is stored in the database.
+
+JWT token is used for authenticating between frontend and backend.
+
+JWT token is short live, will be expired in 30 minutes. We are not support refresh token mechanism at this moment.
+
+### Sharing video
+
+Authenticated users can submit a video by URL, the app will validate that this URL is in the right format.
+
+After the url reached API, video Id will be extracted and the app will attempt to search for it via Youtube video.
+
+If it was success video's information (title, description) will be saved along the original URL.
+
+If it was not found user will receive a error notification.
+
+### Like/dislike
+
+Authenticated users can give their impression to their own video or other videos.
+
+Users can change their vote from like to dislike and otherwise.
+
+All users can see how many like/dislike a video got.
+
+### New video notification
+
+Authenticated users can receive a notification when a new video was submitted via web socket.
+
 ## Libraries
 
 ### Express
