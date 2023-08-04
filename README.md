@@ -120,6 +120,23 @@ Clone project and run
 
 The only thing need to be change is `NODE_ENV` variable in `.env` file should be updated to `production`, then `scripts/start.sh` will know to build and start backend in production mode.
 
+## Todos/Limitations
+
+### [Youtube video Id extractor](src/libs/youtube/extractor.ts)
+
+Youtube video Ids are being extracted with regex and this extractor might not exhaustive.
+
+Sample of supported Youtube video urls:
+
+- https://www.youtube.com/watch?v=0oJG858Wrog
+- https://youtu.be/0oJG858Wrog
+- https://youtu.be/0oJG858Wrog?t=2
+- https://www.youtube.com/watch?time_continue=2&v=0oJG858Wrog&embeds_referring_euri=https%3A%2F%2Fduckduckgo.com%2F&feature=emb_title
+
+### Validator
+
+API and Frontend are both using [Joi](https://joi.dev/) and are maintain their own validation schemas which should and can be separated to a shared lib.
+
 ## Scripts
 
 ### `npm run dev`
